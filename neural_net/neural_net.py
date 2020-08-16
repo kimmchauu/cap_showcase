@@ -18,15 +18,7 @@ class NeuralNet:
         self.n_features = n_features
         self.n_nodes_hl = n_nodes_hl
         
-    def input_layer(self):
 
-    def output_layer(self):
-        nn_out = 1
-
-    def create_network(self):
-
-        #Creating theta matrices for movment between layers as values inside a dictionary. 
-        
     def train_model(self):
     
     
