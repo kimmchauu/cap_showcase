@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 // create navigation links for our top nav bar
@@ -33,7 +34,7 @@ function Navigation () {
                 { navLinks.map((link, index) => (
                     // need to tell what key it is, for react to re-render if it needs to, so if the index changes (something is added or removed) it will re-render new list
                     <li key={index}>
-                        {link.title}
+                        <Link to={link.path}>{link.title}</Link>
                     </li>
                 ))
                 }

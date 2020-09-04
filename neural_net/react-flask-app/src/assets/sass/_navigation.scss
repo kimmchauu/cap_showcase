@@ -24,8 +24,18 @@
         padding-inline-start: 0;
         // this changes the list items to be in a row
         display: flex;
+        align-items: center;
         // this removes the bullet points from the list values
         list-style-type: none;
         margin-right: 20px;
+
+        // Links create anchor tags (a element) - this is how we style the links Home, About Us, Contact Us, Neural Network
+        a {
+            text-decoration: none;
+            // padding top right bottom left
+            padding: 0 20px 0 20px;
+            font-size: 20px;
+            color: $text-color;
+        }
     }
 }
