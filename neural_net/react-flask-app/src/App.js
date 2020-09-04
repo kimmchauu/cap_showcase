@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
+import Navigation from './components/navigation'
+
 
 function App() {
   /* 
@@ -20,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-
+      <Navigation/>
     </div>
   );
 }
