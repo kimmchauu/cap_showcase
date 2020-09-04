@@ -1,5 +1,5 @@
 import React from 'react'
-import {useRouteMatch, generatePath} from 'react-router-dom'
+import {useRouteMatch} from 'react-router-dom'
 
 
 // generates the page which is called in PageRenderer() - passes page as first parameter, make function to look into
@@ -24,7 +24,7 @@ function PageRenderer() {
         params: {page}
     } = useRouteMatch()
 
-    return generatePage()
+    return generatePage(page)
 }
 
 export default PageRenderer;
