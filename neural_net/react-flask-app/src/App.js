@@ -25,6 +25,14 @@ function App() {
     <Router>
       <div className="App">
         <Navigation/>
+        <Switch>
+          {/* PageRenderer will be able to render any dynamic page inside of this, without having to maintain links */}
+          <Route path="/:page" component={PageRenderer}/>
+          {/* Redirects landing path to /home */}
+          <Route path="/" render={() => <Redirect to ="/home"/>}/>
+          {/* If route doesn't exist, render 404 */}
+          <Route component={() => 404} />
+        </Switch>
       </div>
     </Router>
   );
