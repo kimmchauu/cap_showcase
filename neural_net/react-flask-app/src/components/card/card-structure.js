@@ -4,8 +4,9 @@ import {tagColors} from '../styles';
 
 
 function CardStructure ({item, tagsOnTop}) {
-    const style = {backgroundImage: `url("${require(`../../assets/images/${item.image}`)}")`};
-
+    const imageBackground = {backgroundImage: `url("${require(`../../assets/images/${item.image}`)}")`};
+    const style = {...imageBackground, ...item.style}
+    
     // structures each card to be the same, so it can just be called in any part of the code and it will render when given data
     return (
         // link comes from mock data
