@@ -74,6 +74,31 @@
             left: -300px;
             // so it doesn't just pop up instantly
             transition: 300ms ease left;
+            padding: 0;
+            padding-left: 30px;
+            
+            a {
+                width: 100%;
+                padding: 0;
+            }
+
+            li {
+                height: 65px;
+                display: flex;
+                align-items: center;
+            }
+
+            // this makes our menu nav links into a column now for side navbar
+            ul {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 0;
+                padding-top: 20px;
+            }
+
+            ul, li {
+                width: 100%;
+            }
 
             // this is what makes it open and close
             &.active {
