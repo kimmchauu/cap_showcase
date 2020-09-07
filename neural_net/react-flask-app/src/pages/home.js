@@ -27,6 +27,7 @@ const mergeStyles = function (data, config) {
 }
 mergeStyles(homeCardsData, cardConfig)
 
+
 // Builds out the Home page
 // for now it just shows how we can use page containers and css grids to lay out UI components
 function Home() {
@@ -34,7 +35,7 @@ function Home() {
         <div>
             <section className="container home">
                 <div className="row">
-                    <h1>What you can find</h1>
+                    <h1>What you can find (click on any card to find out more)</h1>
                     <CreateCard data={homeCardsData} columns={2}/>
                 </div>
             </section>
