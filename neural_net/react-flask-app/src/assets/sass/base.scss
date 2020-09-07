@@ -19,6 +19,7 @@ html body {
     margin: 4em 20px;
 }
 
+// gives a nice gradient fill over images etc
 .overlay::before {
     z-index: 1;
     content: '';

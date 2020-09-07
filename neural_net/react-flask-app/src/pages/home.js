@@ -1,25 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 
+import {CreateCard} from '../components/card';
+import homeCardsData from '../assets/mock-data/home-cards';
+
+// Builds out the Home page
+// for now it just shows how we can use page containers and css grids to lay out UI components
 function Home() {
-
-    //can now use {currentTime} anywhere in html code - REMOVE THIS LATER this just shows how we can use flask and react
-    const[currentTime, setCurrentTime] = useState(0);
-
-    // function that is invoked when page is render, empty list means no dependencies, so it stops it from changing evrytime the time changes
-    useEffect(() => {
-        // get api call using fetch
-        // get response, convert to json, then get data
-        fetch('/time').then(res => res.json()).then(data => {
-            // logic here
-            // format of object was key and value (time)
-            setCurrentTime(data.time);
-        });
-    }, []);
-    
     return (
         <div>
-            <span>Home</span>
-            <p>The current time is {currentTime}</p>
+            <section className="container home">
+                <div className="row">
+                    <h2>Title here</h2>
+                    <CreateCard data={homeCardsData}/>
+                </div>
+            </section>
         </div>
     )
 }
