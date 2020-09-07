@@ -1,0 +1,12 @@
+.card-structure {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    background-size: cover;
+    // it will always center the image (if it's too wide or tall)
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    margin: 0 auto;
+}

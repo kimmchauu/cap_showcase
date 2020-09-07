@@ -10,8 +10,8 @@ function Home() {
         <div>
             <section className="container home">
                 <div className="row">
-                    <h2>Title here</h2>
-                    <CreateCard data={homeCardsData}/>
+                    <h1>What you can find</h1>
+                    <CreateCard data={homeCardsData} columns={2}/>
                 </div>
             </section>
         </div>
