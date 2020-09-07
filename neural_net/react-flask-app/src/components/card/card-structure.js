@@ -1,6 +1,6 @@
 import React from 'react';
 
-import tagColors from '../styles';
+import {tagColors} from '../styles';
 
 
 function CardStructure ({item, tagsOnTop}) {

@@ -7,6 +7,6 @@ const tagColors = {
     'Neural Network': 'rgb(255, 179, 64)',
 }
 
-export default {
+export {
     tagColors
 }
