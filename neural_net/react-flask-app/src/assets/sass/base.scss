@@ -1,11 +1,35 @@
 @import './_variables';
 @import './navigation';
+@import './home';
+@import './create-card';
+@import './card-structure';
 // need to add imports here whenever a new .scss file is created
 
-body {
+html body {
     // give the first font, if it doesn't have it then next font, etc etc
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 500;
     margin: 0;
-    background-color: #f8f9fa;
+    background-color: $background;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    margin: 4em 20px;
+}
+
+// gives a nice gradient fill over images etc
+.overlay::before {
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(180deg, transparent 0%, transparent 18%, rgba(0,0,0,0.8) 99%, rgba(0,0,0,0.8) 100%);
 }

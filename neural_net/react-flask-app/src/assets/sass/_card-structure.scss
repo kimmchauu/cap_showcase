@@ -1,0 +1,59 @@
+.card-structure {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    background-size: cover;
+    // it will always center the image (if it's too wide or tall)
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    margin: 0 auto;
+
+    // this styles the card image which is the whole card
+    .image-text {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+        min-height: 170px;
+    }
+
+    // all content to float to left
+    .card-title, .card-description, .tags-container, div {
+        float: left;
+        width: 100%;
+        z-index: 10;
+        font-weight: 300;
+    }
+
+    .card-title {
+        font-size: 20px;
+        // don't want margin on top
+        margin-block-start: 0;
+        margin-block-end: 10px;
+        color: white;
+        font-weight: 400;
+    }
+
+    .card-description {
+        font-size: 16px;
+        color: $text-light;
+    }
+
+    .tags-container {
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 15px;
+        margin-left: -1px;
+        color: white;
+
+        .tag {
+            border-radius: 5px;
+            padding: 4px 8px;
+            margin-right: 5px;
+        }
+    }
+}

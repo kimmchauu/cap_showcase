@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import 'antd/dist/antd.css'; // added antd design to use their icons, have to import this (from their documentation)
+import '@quasar/extras/ionicons-v4/ionicons-v4.css';
 import './assets/sass/base.scss';
 
 ReactDOM.render(

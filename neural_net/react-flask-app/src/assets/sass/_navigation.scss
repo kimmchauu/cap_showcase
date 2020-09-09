@@ -8,12 +8,28 @@
     color: $text-color;
 
     // style the title
-    span {
-        font-size: 24px;
+    .nav-title {
+        font-size: 22px;
         font-weight: 500;
         display: flex;
         align-items: center;
         margin-left: 30px;
+        height: 100%;
+    }
+
+    .ion-ios-menu {
+        font-size: 36px;
+        width: 65px;
+        align-items: center;
+        cursor: pointer;
+        // don't show until we need it
+        display: none;
+    }
+
+    .nav-content-container {
+        display: flex;
+        align-items: center;
+        padding-right: 30px;
     }
 
     // this styles our list, we are able to by nesting ul inside of site-navigation class
@@ -41,6 +57,58 @@
             &:hover {
                 color: $text-link;
             }
+        }
+    }
+}
+
+// whenever the screen is <900px, style the components differently below:
+@media screen and (max-width: 900px){
+    .site-navigation {
+        .nav-content-container {
+            width: 300px;
+            height: calc(100% - 65px);
+            background: white;
+            position: absolute;
+            top: 65px;
+            // off the screen
+            left: -300px;
+            // so it doesn't just pop up instantly
+            transition: 300ms ease left;
+            padding: 0;
+            padding-left: 30px;
+            
+            a {
+                width: 100%;
+                padding: 0;
+            }
+
+            li {
+                height: 65px;
+                display: flex;
+                align-items: center;
+            }
+
+            // this makes our menu nav links into a column now for side navbar
+            ul {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 0;
+                padding-top: 20px;
+            }
+
+            ul, li {
+                width: 100%;
+            }
+
+            // this is what makes it open and close
+            &.active {
+                left: 0px;
+            }
+        }
+
+        .ion-ios-menu {
+            // show this icon when screen is <900px
+            display: flex;
         }
     }
 }
