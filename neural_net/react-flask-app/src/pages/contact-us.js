@@ -11,6 +11,7 @@ function ContactUs() {
         fetch('/time').then(res => res.json()).then(data => {
             // logic here
             // format of object was key and value (time)
+            // make sure it's data.time not just data
             setCurrentTime(data.time);
         });
     }, []);
