@@ -18,8 +18,13 @@ function ContactUs() {
 
     return (
         <div>
-            <span>Contact Us</span>
-            <p>The current time is {currentTime}</p>
+            <section className="container">
+                <div className="row">
+                    <h1>Contact Us</h1>
+                    {/* Need to build this out - won't take long, or remove this entirely*/}
+                    <p>The current time is {currentTime}</p>
+                </div>
+            </section>  
         </div>
         
     )
