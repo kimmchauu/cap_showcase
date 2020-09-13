@@ -81,20 +81,20 @@ def colour_dist(predicted, known):
     )
     return distance
 
-def sigmoid_grad(z):
-    """Gradient of sigmoid function
 
-    Args:
-        z (np array or float): [description]
+# def sigmoid_grad(z):
+#     """Gradient of sigmoid function
 
-    Returns:
-        [np array]: gradient of sigmoid function of z where z == theta*layer.
-    """
-    sig_grad = activation_func(z,True)*(1-(activation_func(z,True))
-    return sig_grad
+#     Args:
+#         z (np array or float): [description]
+
+#     Returns:
+#         [np array]: gradient of sigmoid function of z where z == theta*layer.
+#     """
+#     sig_grad = activation_func(z,True)*(1-(activation_func(z,True))
+#     return sig_grad
 
 # def backpropagation(network):
 
 #     D = 0
-
 
