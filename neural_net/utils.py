@@ -63,15 +63,38 @@ def forward_propagation(features, thetas):
     return network
 
 
-n_features = 2
-n_layers = 2
-n_nodes_hl = 3
-n_outnodes = 2
-thetas = create_theta_dict(n_features, n_layers, n_nodes_hl, n_outnodes)
-features = randint(2, size=(n_features, 1))
-# print(f"thetas = {thetas} \n")
-print(f"features = {features} \n")
-# print(thetas[0] @ features)
-network = forward_propagation(features, thetas)
-print(f"After forward propagation neural net is : \n {network}")
+def colour_dist(predicted, known):
+    """Find the euclidean distance between predicted and known colour.
+
+    Args:
+        predicted (List): RGB values in list
+        known (List): RGB values in list
+
+    Returns:
+        [float]: distance between predicted and known 
+    """
+
+    distance = np.sqrt(
+        (predicted[0] - known[0]) ** 2
+        + (predicted[1] - known[1]) ** 2
+        + (predicted[2] - known[2]) ** 2
+    )
+    return distance
+
+
+# def sigmoid_grad(z):
+#     """Gradient of sigmoid function
+
+#     Args:
+#         z (np array or float): [description]
+
+#     Returns:
+#         [np array]: gradient of sigmoid function of z where z == theta*layer.
+#     """
+#     sig_grad = activation_func(z,True)*(1-(activation_func(z,True))
+#     return sig_grad
+
+# def backpropagation(network):
+
+#     D = 0
 
