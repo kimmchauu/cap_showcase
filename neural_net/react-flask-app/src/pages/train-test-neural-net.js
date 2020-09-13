@@ -32,7 +32,7 @@ function TestTrain() {
                             TODO: link this to backend - test button, node sizes, strength fills up,
                     */}
                     <div className="row">
-                        <p>This will be there neural net visual, has test functionality, shows nodes, shows strength (conf)</p>
+                        <p>This will be the neural net visual, has test functionality, shows nodes, shows strength (conf)</p>
                     </div>
 
                      {/* Train button 

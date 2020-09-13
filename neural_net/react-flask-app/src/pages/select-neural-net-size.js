@@ -112,7 +112,7 @@ function SelectNeuralNetSize() {
                     </div>
 
                     <div className="row">
-                        <button className="continue-button" onClick={nextPage}>Next >></button>
+                        <button className="continue-button" onClick={nextPage}>Next</button>
                     </div>
                 </div>
             </section>  
