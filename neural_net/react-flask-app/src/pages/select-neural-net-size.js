@@ -18,9 +18,10 @@ function SelectNeuralNetSize(props) {
         <div>
             <section className="container neural-network">
                 <div className="row">
+                    <div className="colour-selected-div" style={{background: location.state.colourSelected["Hex (24 bit)"]}}>
+                        <h1>Colour Selected: {location.state.colourSelected.Name}. Red - {location.state.colourSelected["Red (8 bit)"]}, Green: {location.state.colourSelected["Green (8 bit)"]} , Blue: {location.state.colourSelected["Blue (8 bit)"]} </h1>
+                    </div>
                     <h1>Select a Neural Network Size</h1>
-                    {/* Shows you the name of the colour that was selected from previous page */}
-                    <p>{location.state.colourSelected.Name}</p>
                 </div>
             </section>  
         </div>
