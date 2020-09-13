@@ -34,3 +34,6 @@ html body {
     left: 0;
     background: linear-gradient(180deg, transparent 0%, transparent 18%, rgba(0,0,0,0.8) 99%, rgba(0,0,0,0.8) 100%);
 }
+
+// imported this to use bootstrap grids, row and columns
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");

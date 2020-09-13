@@ -17,4 +17,21 @@
         color: $text-color;
         font-size: 20px;
     }
+
+    .colour-container {
+        margin-top: 40px;
+
+        // .colour-names {
+        //     width: 8%;
+        // }
+        .colour-button {
+            width: 100%;
+            min-height: 30px; 
+            margin-bottom: 10px;
+            // uncomment this if want no borders around colours
+            //border: none;
+            // this rounds off the edges
+            border-radius: 10px; 
+        }
+    }
 }
