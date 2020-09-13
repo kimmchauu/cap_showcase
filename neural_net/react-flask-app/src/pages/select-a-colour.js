@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router'
 
 import data from '../assets/data/colours.json'
 
 function SelectAColour() {
     const [colourData, setColourData] = useState(data);
-    const [colourSelected, setColourSelected] = useState();
 
-    function colorSelected(colour) {
+    const history = useHistory();
+
+    const colorSelected = (colour) => {
         // shows the correct colour has been selected and data captured
         console.log("colour obj selected: ", colour)
         console.log("colour name: ", colour.Name)
@@ -15,8 +18,11 @@ function SelectAColour() {
         console.log("colour green: ", colour["Green (8 bit)"])
         console.log("colour blue: ", colour["Blue (8 bit)"])
 
-        // now change use colourSelected to pass to other components if need be
-        setColourSelected(colour)
+        // go to select neural net size page
+        history.push({
+            pathname: '/select-neural-net-size',
+            state: { colourSelected: colour}
+       })
     }
     
 
