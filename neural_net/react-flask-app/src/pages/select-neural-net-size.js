@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 
-function SelectNeuralNetSize(props) {
+function SelectNeuralNetSize() {
     // need this to get data from previous page
     const location = useLocation(); 
     const [hiddenLayers, setHiddenLayers] = useState(1); // 1 hidden layer as default
     const [nodes, setNodes] = useState(2);
-
+    const history = useHistory();
 
     const incrementLayers = () => {
         if (hiddenLayers < 3 ){
@@ -55,13 +55,17 @@ function SelectNeuralNetSize(props) {
         }
     }, [hiddenLayers, nodes])
 
-    // delete this after - shows how to access data needed
-    // console.log("colour obj selected: ", location.state.colourSelected)
-    // console.log("colour name: ", location.state.colourSelected.Name)
-    // console.log("colour hex: ", location.state.colourSelected["Hex (24 bit)"])
-    // console.log("colour red: ", location.state.colourSelected["Red (8 bit)"])
-    // console.log("colour green: ", location.state.colourSelected["Green (8 bit)"])
-    // console.log("colour blue: ", location.state.colourSelected["Blue (8 bit)"])
+    const nextPage = () => {
+        // go to neural net train/test page
+        history.push({
+            pathname: '/train-test-neural-net',
+            state: { 
+                colourSelected: location.state.colourSelected,
+                numHiddenLayers: hiddenLayers,
+                numNodes: nodes,
+            }
+       })
+    }
 
     return (
         <div>
@@ -76,12 +80,12 @@ function SelectNeuralNetSize(props) {
                     <div className="row">
                         <div className="col-xs-1">
                             <button className="plus-minus-button" onClick={incrementLayers}>
-                                <i class="glyphicon glyphicon-plus"></i>
+                                <i className="glyphicon glyphicon-plus"></i>
                             </button>
                         </div>
                         <div className="col-xs-1">
                             <button className="plus-minus-button" onClick={decrementLayers} >
-                                <i class="glyphicon glyphicon-minus"></i>
+                                <i className="glyphicon glyphicon-minus"></i>
                             </button>
                         </div>
                         <div className="col-xs-4">
@@ -89,12 +93,12 @@ function SelectNeuralNetSize(props) {
                         </div>
                         <div className="col-xs-1">
                             <button className="plus-minus-button" onClick={incrementNodes}>
-                                <i class="glyphicon glyphicon-plus"></i>
+                                <i className="glyphicon glyphicon-plus"></i>
                             </button>
                         </div>
                         <div className="col-xs-1">
                             <button className="plus-minus-button" onClick={decrementNodes} >
-                                <i class="glyphicon glyphicon-minus"></i>
+                                <i className="glyphicon glyphicon-minus"></i>
                             </button>
                         </div>
                         <div className="col-xs-4">
@@ -105,6 +109,10 @@ function SelectNeuralNetSize(props) {
                     {/* Shows the neural net size based user selection */}
                     <div className="row">
                         <img id="neural-net-size-image" src={require('../assets/images/1layer_2nodes.png')} alt="neural net size"/>
+                    </div>
+
+                    <div className="row">
+                        <button className="continue-button" onClick={nextPage}>Next >></button>
                     </div>
                 </div>
             </section>  

@@ -4,18 +4,14 @@ import { useHistory } from 'react-router-dom'
 import data from '../assets/data/colours.json'
 
 function SelectAColour() {
-    const [colourData, setColourData] = useState(data);
+    const [colourData] = useState(data);
+    // can use ,setColourData if need in future (removed so there's no warning)
 
     const history = useHistory();
 
     const colorSelected = (colour) => {
         // shows the correct colour has been selected and data captured
-        console.log("colour obj selected: ", colour)
-        console.log("colour name: ", colour.Name)
-        console.log("colour hex: ", colour["Hex (24 bit)"])
-        console.log("colour red: ", colour["Red (8 bit)"])
-        console.log("colour green: ", colour["Green (8 bit)"])
-        console.log("colour blue: ", colour["Blue (8 bit)"])
+        //console.log("colour obj selected: ", colour)
 
         // go to select neural net size page
         history.push({
