@@ -5,6 +5,8 @@ const tagColors = {
     'Doggo lover': 'rgb(52, 199, 89)',
     'AI': 'rgb(64, 156, 255)',
     'Neural Network': 'rgb(255, 179, 64)',
+    'Test': 'rgb(64, 156, 255)',
+    'Train': 'rgb(52, 199, 89)',
 }
 
 export {

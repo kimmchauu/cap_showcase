@@ -1,0 +1,32 @@
+.about-us-image{
+    width: 100%;
+    height: 600px;
+}
+
+.kim-image, .jackie-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+// .kim-image {
+//     float: right;
+// }
+
+.divider-line {
+    width: 100%;
+    color: #030303;
+    border-bottom: 2px solid #030303;
+}
+
+.name-next-to-image {
+    font-weight: 500;
+    font-size: 32px;
+    color: black;
+}
+
+.end-page-black-block {
+    width: 100%;
+    color: #030303;
+    border-bottom: 400px solid #030303;
+}
