@@ -1,6 +1,29 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
+
+// draws the circle and has the animation to gradually fill up from bottom - styling in _neural-network.scss
+// pct = 0-100 (% of fill), color, size (e.g. 100)
+const Circle = ({ pct, color, size }) => {
+    const circle = {
+      width: `${size}px`,
+      height: `${size}px`
+    };
+  
+    const circleFill = {
+      background: `linear-gradient(transparent ${100 - pct}%, ${color} ${100 -
+        pct}%)`
+    };
+
+    return (
+      <div className="circle" style={circle}>
+        <div className="circle-fill" style={circleFill} />
+        <div className="circle-overlay" />
+        <div className="circle-fill-text">{pct}%</div>
+      </div>
+    );
+  };
+
 function TestTrain() {
     const location = useLocation(); 
     const [coloursTaught, setColoursTaught] = useState(0);
@@ -33,6 +56,8 @@ function TestTrain() {
                     */}
                     <div className="row">
                         <p>This will be the neural net visual, has test functionality, shows nodes, shows strength (conf)</p>
+                        {/* TODO: pass in conf % to pct, and color to color 
+                        <Circle pct={20} size={100} color={"orange"} /> */}
                     </div>
 
                      {/* Train button 

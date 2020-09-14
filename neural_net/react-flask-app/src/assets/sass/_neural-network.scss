@@ -162,3 +162,49 @@
     color:  #303030 !important;
     padding-left: 10px;
 }
+
+.circle {
+    font-family: Verdana;
+    overflow: hidden;
+    border: 1px solid;
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+  }
+  
+  .circle-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    color: black;
+  }
+  
+  .circle-fill-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: bold;
+  }
+  
+  .circle-overlay {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: white;
+    animation: circle-overlay-anim 1s forwards;
+    transform-origin: 0 0;
+  }
+  
+  // circle animation
+  @keyframes circle-overlay-anim {
+    100% {
+      transform: scaleY(0);
+    }
+  }
