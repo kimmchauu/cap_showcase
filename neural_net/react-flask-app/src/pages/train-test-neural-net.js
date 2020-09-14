@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
+import colourData from '../assets/data/colours.json'
 
 // draws the circle and has the animation to gradually fill up from bottom - styling in _neural-network.scss
 // pct = 0-100 (% of fill), color, size (e.g. 100)
@@ -22,11 +23,32 @@ const Circle = ({ pct, color, size }) => {
         <div className="circle-fill-text">{pct}%</div>
       </div>
     );
-  };
+};
+
+
+const Node = ({ color, size }) => {
+    const circle = {
+      width: `${size}px`,
+      height: `${size}px`
+    };
+  
+    const circleFill = {
+      background: `${color}`,
+    };
+
+    return (
+      <div className="draw-node" style={circle}>
+        <div className="circle-fill" style={circleFill} />
+      </div>
+    );
+};
+
+
 
 function TestTrain() {
     const location = useLocation(); 
     const [coloursTaught, setColoursTaught] = useState(0);
+    const [randomColour, setRandomColour] = useState();
 
     const trainNeuralNet = () => {
         setColoursTaught(coloursTaught + 100);
@@ -42,6 +64,21 @@ function TestTrain() {
     console.log("hidden layers: ", location.state.numHiddenLayers)
     console.log("nodes: ", location.state.numNodes)
 
+    const handleClick = () => {
+        // get a random number and select from colour data, change this later if need be
+        const min = 0;
+        const max = 745;
+        const rand = min + Math.random() * (max - min);
+        const randomNum = ~~rand;
+        // might ned to set rgba instead
+        setRandomColour(colourData[randomNum]["Hex (24 bit)"]);
+
+        // sets the test button background color to random color everytime the clicks it
+        document.getElementById("test-button").style.background = colourData[randomNum]["Hex (24 bit)"];
+
+        // TODO: change/set node weights
+    }
+
     return (
         <div>
             <section className="container neural-network">
@@ -55,14 +92,162 @@ function TestTrain() {
                             TODO: link this to backend - test button, node sizes, strength fills up,
                     */}
                     <div className="row">
-                        <p>This will be the neural net visual, has test functionality, shows nodes, shows strength (conf)</p>
-                        {/* TODO: pass in conf % to pct, and color to color 
-                        <Circle pct={20} size={100} color={"orange"} /> */}
+                        {/* test circle: onClick change it to a random color */}
+                        <div className="col-xs-2">
+                            <button id="test-button" onClick={handleClick}>
+                                <i className="glyphicon glyphicon-eye-open"></i>
+                            </button>
+                        </div>
+
+                        {/* TODO: change size to node size change This is not the best way to do this but whatever */}
+                        {/* 1 layer, 2 nodes */} 
+                        {location.state.numHiddenLayers === 1 && location.state.numNodes === 2 &&
+                        <div className="col-xs-8">
+                            <div className="main-container">
+                                <div className="layer-node-container">
+                                    <Node size={100} color="white" /> 
+                                    <Node size={100} color="white" /> 
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                        {/* 2 layer, 2 nodes */} 
+                        {location.state.numHiddenLayers === 2 && location.state.numNodes === 2 &&
+                            <div>
+                                <div className="col-xs-4">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-xs-4">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                        {/* 3 layer, 2 nodes */} 
+                        {location.state.numHiddenLayers === 3 && location.state.numNodes === 2 &&
+                            <div>
+                                <div className="col-xs-2">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-xs-3">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-xs-2">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                        {/* 1 layer, 3 nodes */} 
+                        {location.state.numHiddenLayers === 1 && location.state.numNodes === 3 &&
+                        <div className="col-xs-8">
+                            <div className="main-container">
+                                <div className="layer-node-container">
+                                    <Node size={100} color="white" /> 
+                                    <Node size={100} color="white" /> 
+                                    <Node size={100} color="white" /> 
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+
+                        {/* 2 layer, 3 nodes */} 
+                        {location.state.numHiddenLayers === 2 && location.state.numNodes === 3 &&
+                            <div>
+                                <div className="col-xs-4">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-xs-4">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        {/* 3 layer, 3 nodes */} 
+                        {location.state.numHiddenLayers === 3 && location.state.numNodes === 3 &&
+                            <div>
+                                <div className="col-xs-2">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-xs-3">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-xs-2">
+                                    <div className="main-container">
+                                        <div className="layer-node-container">
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                            <Node size={100} color="white" /> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                        {/* TODO: strength circle: pass in conf % to pct, change color to what it predicts it as? or leave as is with % */}
+                        <div className="col-xs-2">
+                            <Circle pct={20} size={100} color={location.state.colourSelected["Hex (24 bit)"]} />
+                        </div>
                     </div>
 
                      {/* Train button 
                             TODO: link this backend
                      */}
+                     
                      <div className="train-button-container">
                         <button className="train-button" onClick={trainNeuralNet}>
                             <i className="glyphicon glyphicon-cog"></i> Train
@@ -72,7 +257,7 @@ function TestTrain() {
                     {/* x Colours taught
                             TODO: link this backend, also add visuals if have time
                      */}
-                    <div className="row">
+                    <div className="colours-taught-div">
                         <div className="colours-taught">
                             <p className="colours-taught-text">{coloursTaught} colours taught!</p>
                         </div>

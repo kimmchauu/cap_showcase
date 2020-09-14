@@ -152,6 +152,24 @@
     }
 }
 
+#test-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: pink;
+    border-color: $border;
+    outline: 0;
+    margin-top: 155px;
+
+    i {
+        font-size: 40px;
+        color: black;
+    }
+}
+
+.colours-taught-div {
+    margin-top: 20px;
+}
 .colours-taught {
     background-color: rgba(48, 48, 48, .1);
     border-radius: 8px;
@@ -171,6 +189,7 @@
     height: 100px;
     width: 100px;
     border-radius: 50%;
+    margin-top: 140px;
   }
   
   .circle-fill {
@@ -207,4 +226,26 @@
     100% {
       transform: scaleY(0);
     }
+  }
+
+  // work-around using 2 containers to center the items in both divs
+  .main-container {
+    float: left;
+    position: relative;
+    left: 50%;
+  }
+  .layer-node-container {
+    float: left;
+    position: relative;
+    left: -50%;
+  }
+
+  .draw-node {
+    overflow: hidden;
+    border: 1px solid;
+    position: relative;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 50px;
   }
