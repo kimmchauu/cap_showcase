@@ -29,7 +29,7 @@ class NeuralNet:
         """Return network (nodes)
 
         Returns:
-            [list of np arrays]: Each np array is a layer of nodes. First array is input features. 
+            [dictionary]: Each np array is a layer of nodes. First array is input features. 
         """
         return self.network
 
