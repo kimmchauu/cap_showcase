@@ -7,7 +7,7 @@ class NeuralNet:
     """A simple neural network. 
     """
 
-    def __init__(self, n_layers=2, n_nodes_hl=3, n_features=3, n_outnodes=3):
+    def __init__(self, n_layers=2, n_nodes_hl=4):
         """
         Args:
             model_name (string): name of model
@@ -15,10 +15,10 @@ class NeuralNet:
             n_features (int): number of features from input
             n_nodes_hl (int): Number of nodes in hidden layers
         """
-        self.n_features = n_features
+        self.n_features = 3
         self.n_layers = n_layers
         self.n_nodes_hl = n_nodes_hl
-        self.n_outnodes = n_outnodes
+        self.n_classes = 7
 
     def set_model(self, n_layers, n_features, n_nodes_hl):
         self.n_layers = n_layers
@@ -37,14 +37,15 @@ class NeuralNet:
         """Train thetas matrices that dictate network propagation. 
         """
         self.thetas = create_theta_dict(
-            self.n_features, self.n_layers, self.n_nodes_hl, self.n_outnodes
+            self.n_features, self.n_layers, self.n_nodes_hl, self.n_classes
         )
 
-    def predict(self):
-
+    def predict(self, features):
         """
-        Code will happen here
+        
         """
-        self.network = forward_propagation([12, 8, 20], self.thetas)
-        return 0.8
+        self.network = forward_propagation(features, self.thetas)
+        final_layer = self.network[len(self.network) - 1]
+        prediction = np.argmax(final_layer)
+        return prediction
 
