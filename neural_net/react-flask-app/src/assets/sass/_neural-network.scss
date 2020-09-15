@@ -1,0 +1,164 @@
+.neural-network {
+    h1 {
+        width: 100%;
+        color: $text-color;
+        font-size: 32px;
+    }
+
+    h2 {
+        width: 100%;
+        color: $text-color;
+        font-size: 20px;
+        padding-bottom: 50px;
+    }
+
+    p {
+        width: 100%;
+        color: $text-color;
+        font-size: 20px;
+    }
+
+    .colour-container {
+        margin-top: 40px;
+
+        // .colour-names {
+        //     width: 8%;
+        // }
+        .colour-button {
+            width: 100%;
+            min-height: 30px; 
+            margin-bottom: 15px;
+            // uncomment this if want no borders around colours
+            //border: none;
+            // this rounds off the edges
+            border-radius: 10px; 
+        }
+    }
+}
+
+.header-text-container{
+    position: relative;
+    text-align: center;
+
+    .neural-header-image {
+        width: 100%;
+        height: 240px;
+    }
+
+    .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+        color: white;
+        padding-left: 150px;
+
+        // animation
+        overflow: hidden; /* Ensures the content is not revealed until the animation */
+        //border-right: .15em solid orange; /* The typwriter cursor */
+        white-space: nowrap; /* Keeps the content on a single line */
+        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        letter-spacing: .15em; /* Adjust as needed */
+        animation: 
+            typing 3.5s steps(40, end),
+            blink-caret .75s step-end infinite;
+    }
+}
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+  
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+}
+
+
+// neural-net-size page
+.colour-selected-div {
+    width: 100%;
+    height: 50px;
+
+    h1 {
+        font-size: 16px;
+        padding-top: 17px;
+        padding-left: 20px;
+    }
+}
+
+.plus-minus-button {
+    display: block;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid grey;
+    outline: 0;
+
+    i {
+        font-size: 25px;
+        color: $text-light;
+    }
+}
+
+.buttons-container {
+    padding-top: 300px;
+}
+
+.hidden-layers-title {
+    padding-top: 10px;
+}
+
+#neural-net-size-image {
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.continue-button{
+    width: 100%;
+    background-color: grey;
+    border: 1px solid $border;
+    border-radius: 10px;
+    height: 32px;
+    outline: 0;
+
+    color: black;
+    font-size: 20px;
+}
+
+
+// train test neural net page
+
+.train-button-container {
+    text-align: center;
+
+
+    .train-button {
+        width: 250px;
+        height: 50px;
+        background-color: #303030;
+        border: 1px solid $border;
+        border-radius: 10px;
+        outline: 0;
+
+        font-size: 24px;
+        color: white;
+    }
+}
+
+.colours-taught {
+    background-color: rgba(48, 48, 48, .1);
+    border-radius: 8px;
+    outline: 0;
+}
+.colours-taught-text {
+    font-size: 44px !important;
+    color:  #303030 !important;
+    padding-left: 10px;
+}

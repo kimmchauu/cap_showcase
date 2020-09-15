@@ -16,7 +16,7 @@ export default [
         tags: ['I&D', 'Cool Beans'],
         // link this to About us to find out more
         link: '/about-us',
-        image: 'programming_languages.jpg',
+        image: 'cool.jpg',
     },
     {
         title: 'Kim Chau',
