@@ -60,7 +60,7 @@ function SelectNeuralNetSize() {
         history.push({
             pathname: '/train-test-neural-net',
             state: { 
-                colourSelected: location.state.colourSelected,
+                //colourSelected: location.state.colourSelected,
                 numHiddenLayers: hiddenLayers,
                 numNodes: nodes,
             }
@@ -71,9 +71,9 @@ function SelectNeuralNetSize() {
         <div>
             <section className="container neural-network">
                 <div className="row">
-                    <div className="colour-selected-div" style={{background: location.state.colourSelected["Hex (24 bit)"]}}>
+                    {/* <div className="colour-selected-div" style={{background: location.state.colourSelected["Hex (24 bit)"]}}>
                         <h1>Colour Selected: {location.state.colourSelected.Name}. Red - {location.state.colourSelected["Red (8 bit)"]}, Green: {location.state.colourSelected["Green (8 bit)"]} , Blue: {location.state.colourSelected["Blue (8 bit)"]} </h1>
-                    </div>
+                    </div> */}
                     <h1>Select a Neural Network Size</h1>
 
                     {/*  + - buttons for hidden layers and nodes per hidden layer  */}

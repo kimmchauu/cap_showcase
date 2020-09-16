@@ -56,11 +56,11 @@ function TestTrain() {
 
     // delete this after - shows how to access data needed
     //console.log("colour obj selected: ", location.state.colourSelected)
-    console.log("colour name: ", location.state.colourSelected.Name)
-    console.log("colour hex: ", location.state.colourSelected["Hex (24 bit)"])
-    console.log("colour red: ", location.state.colourSelected["Red (8 bit)"])
-    console.log("colour green: ", location.state.colourSelected["Green (8 bit)"])
-    console.log("colour blue: ", location.state.colourSelected["Blue (8 bit)"])
+    // console.log("colour name: ", location.state.colourSelected.Name)
+    // console.log("colour hex: ", location.state.colourSelected["Hex (24 bit)"])
+    // console.log("colour red: ", location.state.colourSelected["Red (8 bit)"])
+    // console.log("colour green: ", location.state.colourSelected["Green (8 bit)"])
+    // console.log("colour blue: ", location.state.colourSelected["Blue (8 bit)"])
     console.log("hidden layers: ", location.state.numHiddenLayers)
     console.log("nodes: ", location.state.numNodes)
 
@@ -83,9 +83,9 @@ function TestTrain() {
         <div>
             <section className="container neural-network">
                 <div className="row">
-                    <div className="colour-selected-div" style={{background: location.state.colourSelected["Hex (24 bit)"]}}>
+                    {/* <div className="colour-selected-div" style={{background: location.state.colourSelected["Hex (24 bit)"]}}>
                         <h1>Colour Selected: {location.state.colourSelected.Name}. Red - {location.state.colourSelected["Red (8 bit)"]}, Green: {location.state.colourSelected["Green (8 bit)"]} , Blue: {location.state.colourSelected["Blue (8 bit)"]} </h1>
-                    </div>
+                    </div> */}
                     <h1>Train and test the neural network</h1>
 
                     {/* Neural network visual - need to find how to draw shapes etc 
@@ -240,7 +240,7 @@ function TestTrain() {
 
                         {/* TODO: strength circle: pass in conf % to pct, change color to what it predicts it as? or leave as is with % */}
                         <div className="col-xs-2">
-                            <Circle pct={20} size={100} color={location.state.colourSelected["Hex (24 bit)"]} />
+                            <Circle pct={20} size={100} color={"orange"} />
                         </div>
                     </div>
 
