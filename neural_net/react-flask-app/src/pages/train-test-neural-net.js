@@ -48,8 +48,15 @@ function TestTrain() {
     const location = useLocation()
     const [randomColour, setRandomColour] = useState()
     const [colourData, setColourData] = useState(colorData)
-    const [selectedColour, setSelectedColour] = useState()
     const [modelTrainedText, setModelTrainedText] = useState("Click the train button to train the model")
+
+    const [selectedColour, setSelectedColour] = useState()
+    const [colourName, setColourName] = useState("no colour selected")
+    const [colourHex, setColourHex] = useState()
+    const [colourRedValue, setColourRedValue] = useState()
+    const [colourGreenValue, setColourGreenValue] = useState()
+    const [colourBlueValue, setColourBlueValue] = useState()
+
 
     const trainNeuralNet = () => {
         // TODO: conneect to backend
@@ -59,35 +66,39 @@ function TestTrain() {
     // TODO add logic in for when selecting a colour, then remove console
     useEffect(() => {
         console.log(selectedColour)
+        console.log(colourName)
+        console.log(colourHex)
+        console.log(colourRedValue)
+        console.log(colourGreenValue)
+        console.log(colourBlueValue)
 
-    }, [selectedColour]);
+        // set test button colour to selected colour
+        document.getElementById("test-button").style.background = colourHex
+
+    }, [selectedColour, colourName, colourHex, colourRedValue, colourGreenValue, colourBlueValue]);
 
     // set selected colour here, but when you need anything to change when it changes do it above in useEffect
     const colorSelected = (colour) => {
         setSelectedColour(colour)
         //console.log(selectedColour)
+        setColourName(colour.Name)
+        setColourHex(colour["Hex (24 bit)"])
+        setColourRedValue(colour["Red (8 bit)"])
+        setColourGreenValue(colour["Green (8 bit)"])
+        setColourBlueValue(colour["Blue (8 bit)"])
     }
-
-    // delete this after - shows how to access data needed
-    //console.log("colour obj selected: ", location.state.colourSelected)
-    // console.log("colour name: ", location.state.colourSelected.Name)
-    // console.log("colour hex: ", location.state.colourSelected["Hex (24 bit)"])
-    // console.log("colour red: ", location.state.colourSelected["Red (8 bit)"])
-    // console.log("colour green: ", location.state.colourSelected["Green (8 bit)"])
-    // console.log("colour blue: ", location.state.colourSelected["Blue (8 bit)"])
-    //console.log("colour selected", selectedColour)
 
     const handleClick = () => {
         // get a random number and select from colour data, change this later if need be
-        const min = 0;
-        const max = 745;
-        const rand = min + Math.random() * (max - min);
-        const randomNum = ~~rand;
+        //const min = 0;
+        //const max = 745;
+        //const rand = min + Math.random() * (max - min);
+        //const randomNum = ~~rand;
         // might ned to set rgba instead
-        setRandomColour(colourData[randomNum]["Hex (24 bit)"])
+        //setRandomColour(colourData[randomNum]["Hex (24 bit)"])
 
         // sets the test button background color to random color everytime the clicks it
-        document.getElementById("test-button").style.background = randomColour
+        //document.getElementById("test-button").style.background = randomColour
 
 
         console.log("hidden layers: ", location.state.numHiddenLayers)
@@ -100,9 +111,7 @@ function TestTrain() {
         <div>
             <section className="container neural-network">
                 <div className="row">
-                    {/* <div className="colour-selected-div" style={{background: location.state.colourSelected["Hex (24 bit)"]}}>
-                        <h1>Colour Selected: {location.state.colourSelected.Name}. Red - {location.state.colourSelected["Red (8 bit)"]}, Green: {location.state.colourSelected["Green (8 bit)"]} , Blue: {location.state.colourSelected["Blue (8 bit)"]} </h1>
-                    </div> */}
+                    
                     <h1>Train and test the neural network</h1>
 
                     {/* Neural network visual - need to find how to draw shapes etc 
@@ -383,6 +392,9 @@ function TestTrain() {
                         </div>
                     </div>
 
+                     <div className="colour-selected-div" style={{background: colourHex}}>
+                        <h1>Colour Selected: {colourName}. Red - {colourRedValue}, Green: {colourGreenValue} , Blue: {colourBlueValue} </h1>
+                    </div>
 
                     <div className="select-colour-container">
                         <div className="row">
