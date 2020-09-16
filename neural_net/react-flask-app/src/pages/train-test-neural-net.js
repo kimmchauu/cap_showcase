@@ -121,10 +121,15 @@ function TestTrain() {
             axios.post('http://localhost:3000/predict', myParams)
                 .then(function(response){
                     console.log(response);
-                    // now returns the final layer as well
+                    // now returns the final layer as well as a json string though
                     console.log(response.data.final_layer);
                     console.log(response.data.predClassNum);
-                    //setPredictionClassNum(response.data)
+
+                    setPredictionClassNum(response.data.predClassNum)
+                    // use JSON.parse to convert back to array of arrays
+                    var final_layer = (JSON.parse(response.data.final_layer))
+                    // access first number using [0][0], 2nd num using [1][0] etc
+                    console.log(final_layer[0][0])
                 })
                 .catch(function(error){
                     console.log(error);
