@@ -14,7 +14,6 @@ def get_current_time():
     return {'time': time.time()}
 
 # predict route method, needs rgb values, num of hidden layers, and num of nodes
-# will pass in RGB, but need to turn that into array and normalise ite.g. features = np.array([[100], [30], [60]]) / 255 then pass features into predict
 @app.route("/predict", methods=["POST"])
 def post_predict():
     data = request.get_json()

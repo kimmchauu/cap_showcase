@@ -58,6 +58,9 @@ function TestTrain() {
     const [colourGreenValue, setColourGreenValue] = useState()
     const [colourBlueValue, setColourBlueValue] = useState()
 
+    const [predictionClassNum, setPredictionClassNum] = useState()
+    const [predictedColour, setPredictedColour] = useState("white")
+    const rainbowColours = ["#9400D3","#4B0082", "#0000FF", "#00FF00", "#FFFF00", "#FF7F00", "#FF0000" ]
 
     const trainNeuralNet = () => {
         // TODO: conneect to backend
@@ -89,20 +92,21 @@ function TestTrain() {
         setColourBlueValue(colour["Blue (8 bit)"])
     }
 
+    // this triggers everytime predictionClassNum changes, which means everytime we predict
+    useEffect(() => {
+        console.log("~~~~~", predictionClassNum)
+        // convert predictionClassNum from str to int
+        var predictClassNum = parseInt(predictionClassNum)
+        // set predictedColour to rainbowColours[predictionClassNum] so we get the predicted colour (out of the 7)
+        setPredictedColour(rainbowColours[predictClassNum])
+    }, [predictionClassNum]);
+
     const handleClick = () => {
-        // get a random number and select from colour data, change this later if need be
-        //const min = 0;
-        //const max = 745;
-        //const rand = min + Math.random() * (max - min);
-        //const randomNum = ~~rand;
-        // might ned to set rgba instead
-        //setRandomColour(colourData[randomNum]["Hex (24 bit)"])
 
         console.log("hidden layers: ", location.state.numHiddenLayers)
         console.log("nodes: ", location.state.numNodes)
 
-        // TODO: call predict api
-        // need to pass rgb values, num of hidden layers, and num of nodes
+        // Calls predict api passing in rbg values, num of hidden layers, num of nodes
         var myParams = {
             //data: selectedColour
             redValue: colourRedValue,
@@ -117,6 +121,8 @@ function TestTrain() {
             axios.post('http://localhost:3000/predict', myParams)
                 .then(function(response){
                     console.log(response);
+                    // response.data atm returns the string class number
+                    setPredictionClassNum(response.data)
                 })
                 .catch(function(error){
                     console.log(error);
@@ -377,20 +383,20 @@ function TestTrain() {
                         <div className="col-xs-2">
                             <div className="main-container">
                                 <div className="layer-node-container">
-                                    <Node size={60} color="#9400D3" /> 
-                                    <Node size={60} color="#4B0082" /> 
-                                    <Node size={60} color="#0000FF" />
-                                    <Node size={60} color="#00FF00" /> 
-                                    <Node size={60} color="#FFFF00" /> 
-                                    <Node size={60} color="#FF7F00" /> 
-                                    <Node size={60} color="#FF0000" />  
+                                    <Node size={60} color={rainbowColours[0]} /> 
+                                    <Node size={60} color={rainbowColours[1]} /> 
+                                    <Node size={60} color={rainbowColours[2]}/>
+                                    <Node size={60} color={rainbowColours[3]}/> 
+                                    <Node size={60} color={rainbowColours[4]} /> 
+                                    <Node size={60} color={rainbowColours[5]} /> 
+                                    <Node size={60} color={rainbowColours[6]} />  
                                 </div>
                             </div>
                         </div>
 
                         {/* TODO: strength circle: pass in conf % to pct, change color to what it predicts it as? or leave as is with % */}
                         <div className="col-xs-1">
-                            <Circle pct={20} size={100} color={"orange"} />
+                            <Circle pct={100} size={100} color={predictedColour} />
                         </div>
                     </div>
 
