@@ -351,18 +351,18 @@ function TestTrain() {
                             }
                             </div>
 
-                        {/* TODO: connect to backend */ }
+                        {/* TODO: connect to backend, idea: give it an id and set it to what we need it to be later (diff size etc) */ }
                         {/* last layer will always be 7: the rainbow*/}
                         <div className="col-xs-2">
                             <div className="main-container">
                                 <div className="layer-node-container">
-                                    <Node size={60} color="white" /> 
-                                    <Node size={60} color="white" /> 
-                                    <Node size={60} color="white" />
-                                    <Node size={60} color="white" /> 
-                                    <Node size={60} color="white" /> 
-                                    <Node size={60} color="white" /> 
-                                    <Node size={60} color="white" />  
+                                    <Node size={60} color="#9400D3" /> 
+                                    <Node size={60} color="#4B0082" /> 
+                                    <Node size={60} color="#0000FF" />
+                                    <Node size={60} color="#00FF00" /> 
+                                    <Node size={60} color="#FFFF00" /> 
+                                    <Node size={60} color="#FF7F00" /> 
+                                    <Node size={60} color="#FF0000" />  
                                 </div>
                             </div>
                         </div>
