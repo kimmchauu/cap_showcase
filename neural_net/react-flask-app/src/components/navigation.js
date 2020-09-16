@@ -12,10 +12,10 @@ const navLinks = [
         title: 'About Us',
         path: '/about-us',
     },
-    {
-        title: 'Contact Us',
-        path: '/contact-us',
-    },
+    // {
+    //     title: 'Contact Us',
+    //     path: '/contact-us',
+    // },
     {
         title: 'Neural Network',
         path: '/neural-network',

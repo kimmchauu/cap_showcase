@@ -44,10 +44,28 @@ const Node = ({ color, size }) => {
     );
 };
 
+const FinalNode = ({ pct, color, size }) => {
+    const circle = {
+      width: `${size}px`,
+      height: `${size}px`
+    };
+  
+    const circleFill = {
+        background: `linear-gradient(transparent ${100 - pct}%, ${color} ${100 -
+            pct}%)`
+    };
+
+    return (
+      <div className="draw-node" style={circle}>
+        <div className="circle-fill" style={circleFill} />
+        <div className="final-node-fill-text">{pct}%</div>
+      </div>
+    );
+};
+
 
 function TestTrain() {
     const location = useLocation()
-    const [randomColour, setRandomColour] = useState()
     const [colourData, setColourData] = useState(colorData)
     const [modelTrainedText, setModelTrainedText] = useState("Click the train button to train the model")
 
@@ -60,7 +78,17 @@ function TestTrain() {
 
     const [predictionClassNum, setPredictionClassNum] = useState()
     const [predictedColour, setPredictedColour] = useState("white")
+    const [predictedConf, setPredictedConf] = useState()
     const rainbowColours = ["#9400D3","#4B0082", "#0000FF", "#00FF00", "#FFFF00", "#FF7F00", "#FF0000" ]
+    // this will set the conf of each node in final layer
+    // Set this to 100 so it shows the colours at the start, it's % text default is hidden, when it does have a % it will appear as normal
+    const [firstNode, setFirstNode] = useState(100)
+    const [secNode, setSecNode] = useState(100)
+    const [thirdNode, setThirdNode] = useState(100)
+    const [fourthNode, setFourthNode] = useState(100)
+    const [fifthNode, setFifthNode] = useState(100)
+    const [sixthNode, setSixthNode] = useState(100)
+    const [sevenNode, setSevenNode] = useState(100)
 
     const trainNeuralNet = () => {
         // TODO: conneect to backend
@@ -129,7 +157,23 @@ function TestTrain() {
                     // use JSON.parse to convert back to array of arrays
                     var final_layer = (JSON.parse(response.data.final_layer))
                     // access first number using [0][0], 2nd num using [1][0] etc
-                    console.log(final_layer[0][0])
+                    console.log(final_layer[0][0] * 100)
+                    setPredictedConf((final_layer[response.data.predClassNum][0] * 100).toFixed(2))
+                    // set the weight of the final layer nodes too
+                    setFirstNode((final_layer[0][0] * 100).toFixed(2))
+                    setSecNode((final_layer[1][0] * 100).toFixed(2))
+                    setThirdNode((final_layer[2][0] * 100).toFixed(2))
+                    setFourthNode((final_layer[3][0] * 100).toFixed(2))
+                    setFifthNode((final_layer[4][0] * 100).toFixed(2))
+                    setSixthNode((final_layer[5][0] * 100).toFixed(2))
+                    setSevenNode((final_layer[6][0] * 100).toFixed(2))
+
+                    // if predicition is made, then show the % nums on the final layer
+                    const demoQueryAll = document.querySelectorAll('.final-node-fill-text');
+                    demoQueryAll.forEach(query => {
+                        query.style.visibility = 'visible';
+                    });
+
                 })
                 .catch(function(error){
                     console.log(error);
@@ -390,20 +434,20 @@ function TestTrain() {
                         <div className="col-xs-2">
                             <div className="main-container">
                                 <div className="layer-node-container">
-                                    <Node size={60} color={rainbowColours[0]} /> 
-                                    <Node size={60} color={rainbowColours[1]} /> 
-                                    <Node size={60} color={rainbowColours[2]}/>
-                                    <Node size={60} color={rainbowColours[3]}/> 
-                                    <Node size={60} color={rainbowColours[4]} /> 
-                                    <Node size={60} color={rainbowColours[5]} /> 
-                                    <Node size={60} color={rainbowColours[6]} />  
+                                    <FinalNode pct={firstNode} size={80} color={rainbowColours[0]} /> 
+                                    <FinalNode pct={secNode} size={80} color={rainbowColours[1]} /> 
+                                    <FinalNode pct={thirdNode} size={80} color={rainbowColours[2]}/>
+                                    <FinalNode pct={fourthNode} size={80} color={rainbowColours[3]}/> 
+                                    <FinalNode pct={fifthNode} size={80} color={rainbowColours[4]} /> 
+                                    <FinalNode pct={sixthNode} size={80} color={rainbowColours[5]} /> 
+                                    <FinalNode pct={sevenNode} size={80} color={rainbowColours[6]} />  
                                 </div>
                             </div>
                         </div>
 
                         {/* TODO: strength circle: pass in conf % to pct, change color to what it predicts it as? or leave as is with % */}
                         <div className="col-xs-1">
-                            <Circle pct={100} size={100} color={predictedColour} />
+                            <Circle pct={predictedConf} size={100} color={predictedColour} />
                         </div>
                     </div>
 

@@ -225,6 +225,16 @@
     animation: circle-overlay-anim 1s forwards;
     transform-origin: 0 0;
   }
+
+  .final-node-fill-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: bold;
+    visibility: hidden;
+  }
   
   // circle animation
   @keyframes circle-overlay-anim {
