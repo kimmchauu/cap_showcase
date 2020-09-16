@@ -121,8 +121,10 @@ function TestTrain() {
             axios.post('http://localhost:3000/predict', myParams)
                 .then(function(response){
                     console.log(response);
-                    // response.data atm returns the string class number
-                    setPredictionClassNum(response.data)
+                    // now returns the final layer as well
+                    console.log(response.data.final_layer);
+                    console.log(response.data.predClassNum);
+                    //setPredictionClassNum(response.data)
                 })
                 .catch(function(error){
                     console.log(error);

@@ -1,9 +1,11 @@
 import time
 from flask import Flask, request, jsonify
 import numpy as np
+import json
 
 from neural_net import *
 from utils import *
+    
 
 # create app instance
 app = Flask(__name__)
@@ -36,7 +38,17 @@ def post_predict():
     # Make prediction using the features array above 
     pred = neural.predict(features)
 
-    # return class it thinks it is for now, will expanded this to return the weights as well
-    print(f"\nPrediction is class number: \n {pred} \n")
-    # The return type must be a string, dict, tuple, Response instance, or WSGI callable
-    return str(pred)
+    # for some reason, can't just return network it says it's not a dict when it is..
+    network = neural.get_network()
+    final_layer = network[len(network) - 1]
+    print("final layer", final_layer)
+    # Have to do serialization
+    final_layer_list = final_layer.tolist()
+    final_layer_json = json.dumps(final_layer_list)
+
+    # keep adding to this to add more to response
+    resp_dict = {
+        "final_layer": final_layer_json,
+        "predClassNum": str(pred)
+    }
+    return resp_dict
