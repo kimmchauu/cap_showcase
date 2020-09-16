@@ -46,14 +46,14 @@ const Node = ({ color, size }) => {
 
 function TestTrain() {
     const location = useLocation()
-    const [coloursTaught, setColoursTaught] = useState(0)
     const [randomColour, setRandomColour] = useState()
     const [colourData, setColourData] = useState(colorData)
     const [selectedColour, setSelectedColour] = useState()
+    const [modelTrainedText, setModelTrainedText] = useState("Click the train button to train the model")
 
     const trainNeuralNet = () => {
         // TODO: conneect to backend
-        setColoursTaught(coloursTaught + 100)
+        setModelTrainedText("Model trained!")
     }
 
     // TODO add logic in for when selecting a colour, then remove console
@@ -276,7 +276,7 @@ function TestTrain() {
                      */}
                     <div className="colours-taught-div">
                         <div className="colours-taught">
-                            <p className="colours-taught-text">{coloursTaught} colours taught!</p>
+                            <p className="colours-taught-text">{modelTrainedText}</p>
                         </div>
                     </div>
 
