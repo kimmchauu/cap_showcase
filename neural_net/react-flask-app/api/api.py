@@ -13,6 +13,7 @@ app = Flask(__name__)
 def get_current_time():
     return {'time': time.time()}
 
+# predict route method, needs rgb values, num of hidden layers, and num of nodes
 # will pass in RGB, but need to turn that into array and normalise ite.g. features = np.array([[100], [30], [60]]) / 255 then pass features into predict
 @app.route("/predict", methods=["POST"])
 def post_predict():
@@ -23,4 +24,20 @@ def post_predict():
     print("blue: ", data["blueValue"])
     print("num hidden layers: ", data["numHiddenLayers"])
     print("num nodes: ", data["numNodes"])
-    return data
+
+    # features - rbg values (normalised between 0 and 1)
+    features = np.array([[data["redValue"]], [data["greenValue"]], [data["blueValue"]]]) / 255
+    # Initialise neural net class which takes in num hidden layers, and num nodes
+    neural = NeuralNet(data["numHiddenLayers"], data["numNodes"])
+    """ Train model (currently just creates randomly filled theta matrices)
+    this won't need user interaction asides from clicking button to use method 
+    """
+    # TODO: move this out of the predict function
+    neural.train_model()
+    # Make prediction using the features array above 
+    pred = neural.predict(features)
+
+    # return class it thinks it is for now, will expanded this to return the weights as well
+    print(f"\nPrediction is class number: \n {pred} \n")
+    # The return type must be a string, dict, tuple, Response instance, or WSGI callable
+    return str(pred)
