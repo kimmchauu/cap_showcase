@@ -110,153 +110,256 @@ function TestTrain() {
                     */}
                     <div className="row">
                         {/* test circle: onClick change it to a random color */}
-                        <div className="col-xs-2">
+                        <div className="col-xs-1">
                             <button id="test-button" onClick={handleClick}>
                                 <i className="glyphicon glyphicon-eye-open"></i>
                             </button>
                         </div>
 
-                        {/* TODO: change size to node size change This is not the best way to do this but whatever */}
-                        {/* 1 layer, 2 nodes */} 
-                        {location.state.numHiddenLayers === 1 && location.state.numNodes === 2 &&
-                        <div className="col-xs-8">
+                        {/* 1st layer will always be 3: RGB */}
+                        <div className="col-lg-8" >
+                            <div className="col-xs-3">
+                                <div className="main-container">
+                                    <div className="layer-node-container">
+                                        <Node size={60} color="white" /> 
+                                        <Node size={60} color="white" /> 
+                                        <Node size={60} color="white" /> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* TODO: change size to node size change This is not the best way to do this but whatever */}
+                            {/* 1 layer, 2 nodes */} 
+                            {location.state.numHiddenLayers === 1 && location.state.numNodes === 2 &&
+                            <div className="col-xs-8">
+                                <div className="main-container">
+                                    <div className="layer-node-container">
+                                        <Node size={60} color="grey" /> 
+                                        <Node size={60} color="grey" /> 
+                                    </div>
+                                </div>
+                            </div>
+                            }
+
+                            {/* 2 layer, 2 nodes */} 
+                            {location.state.numHiddenLayers === 2 && location.state.numNodes === 2 &&
+                                <div>
+                                    <div className="col-xs-4">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey"/> 
+                                                <Node size={60} color="grey"/> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-4">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            {/* 3 layer, 2 nodes */} 
+                            {location.state.numHiddenLayers === 3 && location.state.numNodes === 2 &&
+                                <div>
+                                    <div className="col-xs-3">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-3">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-3">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            {/* 1 layer, 3 nodes */} 
+                            {location.state.numHiddenLayers === 1 && location.state.numNodes === 3 &&
+                            <div className="col-xs-8">
+                                <div className="main-container">
+                                    <div className="layer-node-container">
+                                        <Node size={60} color="grey" /> 
+                                        <Node size={60} color="grey" /> 
+                                        <Node size={60} color="grey" /> 
+                                    </div>
+                                </div>
+                            </div>
+                            }
+
+
+                            {/* 2 layer, 3 nodes */} 
+                            {location.state.numHiddenLayers === 2 && location.state.numNodes === 3 &&
+                                <div>
+                                    <div className="col-xs-4">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey"/> 
+                                                <Node size={60} color="grey" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-4">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey"/> 
+                                                <Node size={60} color="grey" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            {/* 3 layer, 3 nodes */} 
+                            {location.state.numHiddenLayers === 3 && location.state.numNodes === 3 &&
+                                <div>
+                                    <div className="col-xs-3" >
+                                        <div className="main-container" >
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey"/> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-3">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-3">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            {/* 1 layer, 4 nodes */} 
+                            {location.state.numHiddenLayers === 1 && location.state.numNodes === 4 &&
+                            <div className="col-xs-8">
+                                <div className="main-container">
+                                    <div className="layer-node-container">
+                                        <Node size={60} color="grey" /> 
+                                        <Node size={60} color="grey" /> 
+                                        <Node size={60} color="grey" /> 
+                                        <Node size={60} color="grey" /> 
+                                    </div>
+                                </div>
+                            </div>
+                            }
+
+                            {/* 2 layer, 4 nodes */} 
+                            {location.state.numHiddenLayers === 2 && location.state.numNodes === 4 &&
+                                <div>
+                                    <div className="col-xs-4">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey"/> 
+                                                <Node size={60} color="grey" />
+                                                <Node size={60} color="grey" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-4">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey"/> 
+                                                <Node size={60} color="grey" />
+                                                <Node size={60} color="grey" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            {/* 3 layer, 4 nodes */} 
+                            {location.state.numHiddenLayers === 3 && location.state.numNodes === 4 &&
+                                <div>
+                                    <div className="col-xs-3" >
+                                        <div className="main-container" >
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey"/> 
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-3">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-3">
+                                        <div className="main-container">
+                                            <div className="layer-node-container">
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                                <Node size={60} color="grey" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            </div>
+
+                        {/* TODO: connect to backend */ }
+                        {/* last layer will always be 7: the rainbow*/}
+                        <div className="col-xs-2">
                             <div className="main-container">
                                 <div className="layer-node-container">
-                                    <Node size={100} color="white" /> 
-                                    <Node size={100} color="white" /> 
+                                    <Node size={60} color="white" /> 
+                                    <Node size={60} color="white" /> 
+                                    <Node size={60} color="white" />
+                                    <Node size={60} color="white" /> 
+                                    <Node size={60} color="white" /> 
+                                    <Node size={60} color="white" /> 
+                                    <Node size={60} color="white" />  
                                 </div>
                             </div>
                         </div>
-                        }
-
-                        {/* 2 layer, 2 nodes */} 
-                        {location.state.numHiddenLayers === 2 && location.state.numNodes === 2 &&
-                            <div>
-                                <div className="col-xs-4">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xs-4">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-
-                        {/* 3 layer, 2 nodes */} 
-                        {location.state.numHiddenLayers === 3 && location.state.numNodes === 2 &&
-                            <div>
-                                <div className="col-xs-2">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xs-3">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xs-2">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-
-                        {/* 1 layer, 3 nodes */} 
-                        {location.state.numHiddenLayers === 1 && location.state.numNodes === 3 &&
-                        <div className="col-xs-8">
-                            <div className="main-container">
-                                <div className="layer-node-container">
-                                    <Node size={100} color="white" /> 
-                                    <Node size={100} color="white" /> 
-                                    <Node size={100} color="white" /> 
-                                </div>
-                            </div>
-                        </div>
-                        }
-
-
-                        {/* 2 layer, 3 nodes */} 
-                        {location.state.numHiddenLayers === 2 && location.state.numNodes === 3 &&
-                            <div>
-                                <div className="col-xs-4">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xs-4">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                        {/* 3 layer, 3 nodes */} 
-                        {location.state.numHiddenLayers === 3 && location.state.numNodes === 3 &&
-                            <div>
-                                <div className="col-xs-2">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xs-3">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xs-2">
-                                    <div className="main-container">
-                                        <div className="layer-node-container">
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                            <Node size={100} color="white" /> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
 
                         {/* TODO: strength circle: pass in conf % to pct, change color to what it predicts it as? or leave as is with % */}
-                        <div className="col-xs-2">
+                        <div className="col-xs-1">
                             <Circle pct={20} size={100} color={"orange"} />
                         </div>
                     </div>
@@ -284,6 +387,7 @@ function TestTrain() {
                     <div className="select-colour-container">
                         <div className="row">
                             <h1>Test the neural network by selecting a colour ({colourData.length} colours)</h1>
+                            <p>Click the test (eye) button above after you have selected a colour</p>
                             {   
                                 Object.values(colourData).map(colour => {
                                 //document.getElementById("colour-button").style.backgroundColor = color;
