@@ -18,4 +18,9 @@ def get_current_time():
 def post_predict():
     data = request.get_json()
     print(data)
+    print("red: ", data["redValue"])
+    print("green: ", data["greenValue"])
+    print("blue: ", data["blueValue"])
+    print("num hidden layers: ", data["numHiddenLayers"])
+    print("num nodes: ", data["numNodes"])
     return data

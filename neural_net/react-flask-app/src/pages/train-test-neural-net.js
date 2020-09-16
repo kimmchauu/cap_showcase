@@ -102,8 +102,14 @@ function TestTrain() {
         console.log("nodes: ", location.state.numNodes)
 
         // TODO: call predict api
+        // need to pass rgb values, num of hidden layers, and num of nodes
         var myParams = {
-            data: selectedColour
+            //data: selectedColour
+            redValue: colourRedValue,
+            greenValue: colourGreenValue,
+            blueValue: colourBlueValue,
+            numHiddenLayers: location.state.numHiddenLayers,
+            numNodes: location.state.numNodes,
         }
 
         // may need to update this to also check if train button has hit
