@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 function SelectNeuralNetSize() {
@@ -21,7 +21,7 @@ function SelectNeuralNetSize() {
     }
 
     const incrementNodes = () => {
-        if (nodes < 3 ){
+        if (nodes < 4 ){
             setNodes(nodes + 1);
         }
     }
@@ -39,19 +39,25 @@ function SelectNeuralNetSize() {
                 document.getElementById("neural-net-size-image").src = require("../assets/images/1layer_2nodes.png");
             } else if (nodes === 3){
                 document.getElementById("neural-net-size-image").src = require("../assets/images/1layer_3nodes.png");
+            }  else if (nodes === 4){
+                document.getElementById("neural-net-size-image").src = require("../assets/images/1layer_4nodes.png");
             } 
         } else if (hiddenLayers === 2) {
             if (nodes === 2){
                 document.getElementById("neural-net-size-image").src = require("../assets/images/2layers_2nodes.png");
             } else if (nodes === 3){
                 document.getElementById("neural-net-size-image").src = require("../assets/images/2layers_3nodes.png");
+            } else if (nodes === 4){
+                document.getElementById("neural-net-size-image").src = require("../assets/images/2layers_4nodes.png");
             }
         }else if (hiddenLayers === 3) {
             if (nodes === 2){
                 document.getElementById("neural-net-size-image").src = require("../assets/images/3layers_2nodes.png");
             } else if (nodes === 3){
                 document.getElementById("neural-net-size-image").src = require("../assets/images/3layers_3nodes.png");
-            } 
+            } else if (nodes === 4){
+                document.getElementById("neural-net-size-image").src = require("../assets/images/3layers_4nodes.png");
+            }
         }
     }, [hiddenLayers, nodes])
 
@@ -102,7 +108,7 @@ function SelectNeuralNetSize() {
                             </button>
                         </div>
                         <div className="col-xs-4">
-                            <p className="hidden-layers-title">{nodes} nodes per hidden layer (2-3)</p>
+                            <p className="hidden-layers-title">{nodes} nodes per hidden layer (2-4)</p>
                         </div>
                     </div>
 
