@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import axios from 'axios';
 
 import colorData from '../assets/data/colours.json'
 
@@ -97,12 +98,26 @@ function TestTrain() {
         // might ned to set rgba instead
         //setRandomColour(colourData[randomNum]["Hex (24 bit)"])
 
-        // sets the test button background color to random color everytime the clicks it
-        //document.getElementById("test-button").style.background = randomColour
-
-
         console.log("hidden layers: ", location.state.numHiddenLayers)
         console.log("nodes: ", location.state.numNodes)
+
+        // TODO: call predict api
+        var myParams = {
+            data: selectedColour
+        }
+
+        // may need to update this to also check if train button has hit
+        if (selectedColour !== ""){
+            axios.post('http://localhost:3000/predict', myParams)
+                .then(function(response){
+                    console.log(response);
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+        } else {
+            alert("No colour selected to test")
+        }
 
         // TODO: change/set node weights
     }
