@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory} from 'react-router-dom'
 
 
 function SelectNeuralNetSize() {
     // need this to get data from previous page
-    const location = useLocation(); 
+    //const location = useLocation(); 
     const [hiddenLayers, setHiddenLayers] = useState(1); // 1 hidden layer as default
     const [nodes, setNodes] = useState(2);
     const history = useHistory();

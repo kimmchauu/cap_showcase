@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import colourData from '../assets/data/colours.json'
+import colorData from '../assets/data/colours.json'
 
 // draws the circle and has the animation to gradually fill up from bottom - styling in _neural-network.scss
 // pct = 0-100 (% of fill), color, size (e.g. 100)
@@ -44,14 +44,28 @@ const Node = ({ color, size }) => {
 };
 
 
-
 function TestTrain() {
-    const location = useLocation(); 
-    const [coloursTaught, setColoursTaught] = useState(0);
-    const [randomColour, setRandomColour] = useState();
+    const location = useLocation()
+    const [coloursTaught, setColoursTaught] = useState(0)
+    const [randomColour, setRandomColour] = useState()
+    const [colourData, setColourData] = useState(colorData)
+    const [selectedColour, setSelectedColour] = useState()
 
     const trainNeuralNet = () => {
-        setColoursTaught(coloursTaught + 100);
+        // TODO: conneect to backend
+        setColoursTaught(coloursTaught + 100)
+    }
+
+    // TODO add logic in for when selecting a colour, then remove console
+    useEffect(() => {
+        console.log(selectedColour)
+
+    }, [selectedColour]);
+
+    // set selected colour here, but when you need anything to change when it changes do it above in useEffect
+    const colorSelected = (colour) => {
+        setSelectedColour(colour)
+        //console.log(selectedColour)
     }
 
     // delete this after - shows how to access data needed
@@ -61,8 +75,7 @@ function TestTrain() {
     // console.log("colour red: ", location.state.colourSelected["Red (8 bit)"])
     // console.log("colour green: ", location.state.colourSelected["Green (8 bit)"])
     // console.log("colour blue: ", location.state.colourSelected["Blue (8 bit)"])
-    console.log("hidden layers: ", location.state.numHiddenLayers)
-    console.log("nodes: ", location.state.numNodes)
+    //console.log("colour selected", selectedColour)
 
     const handleClick = () => {
         // get a random number and select from colour data, change this later if need be
@@ -71,10 +84,14 @@ function TestTrain() {
         const rand = min + Math.random() * (max - min);
         const randomNum = ~~rand;
         // might ned to set rgba instead
-        setRandomColour(colourData[randomNum]["Hex (24 bit)"]);
+        setRandomColour(colourData[randomNum]["Hex (24 bit)"])
 
         // sets the test button background color to random color everytime the clicks it
-        document.getElementById("test-button").style.background = colourData[randomNum]["Hex (24 bit)"];
+        document.getElementById("test-button").style.background = randomColour
+
+
+        console.log("hidden layers: ", location.state.numHiddenLayers)
+        console.log("nodes: ", location.state.numNodes)
 
         // TODO: change/set node weights
     }
@@ -260,6 +277,27 @@ function TestTrain() {
                     <div className="colours-taught-div">
                         <div className="colours-taught">
                             <p className="colours-taught-text">{coloursTaught} colours taught!</p>
+                        </div>
+                    </div>
+
+
+                    <div className="select-colour-container">
+                        <div className="row">
+                            <h1>Test the neural network by selecting a colour ({colourData.length} colours)</h1>
+                            {   
+                                Object.values(colourData).map(colour => {
+                                //document.getElementById("colour-button").style.backgroundColor = color;
+                                return (
+                                    <div className="colour-container">
+                                            <div className="col-xs-1">
+                                                {/* Need to display the colours but also capture what colour was selected */}
+                                                <button className="colour-button" style={{background: colour["Hex (24 bit)"]}} onClick={() => colorSelected(colour)}></button>
+                                            </div>
+                                        
+                                    </div> 
+                                );
+                                })
+                            }
                         </div>
                     </div>
 
