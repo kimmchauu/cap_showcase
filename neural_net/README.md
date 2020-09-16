@@ -27,6 +27,10 @@ RUN THESE 3 COMMANDS (If first time cloning)
 python3 -m venv venv
 . venv/bin/activate
 pip install flask python-dotenv
+pip install numpy
+pip install python-Levenshtein
+pip install fuzzywuzzy
+pip install json
 ```
 * creates venv inside api dir
 * activates it
