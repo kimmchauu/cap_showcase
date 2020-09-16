@@ -15,8 +15,7 @@ def activation_func(x, func):
     if func:
         sigmoid = 1 / (1 + np.exp(-x))
     else:
-        sigmoid = max(0, x)
-
+        sigmoid = np.maximum(0, x)
     return sigmoid
 
 
@@ -53,17 +52,19 @@ def create_theta_dict(n_features, n_layers, n_nodes_hl, n_outnodes):
 
 
 def forward_propagation(features, thetas):
-
-    network = [features]
+    network = {}
+    network = {0: features}
+    # print(network)
+    # print(thetas[0])
     for i in range(0, len(thetas)):
         Z = thetas[i] @ network[i]
         A = activation_func(Z, True)
-        network.append(A)
+        network[i + 1] = A
 
     return network
 
 
-def colour_dist(predicted, known):
+def cost_func(predicted, known):
     """Find the euclidean distance between predicted and known colour.
 
     Args:
@@ -74,27 +75,27 @@ def colour_dist(predicted, known):
         [float]: distance between predicted and known 
     """
 
-    distance = np.sqrt(
-        (predicted[0] - known[0]) ** 2
-        + (predicted[1] - known[1]) ** 2
-        + (predicted[2] - known[2]) ** 2
-    )
     return distance
 
 
-# def sigmoid_grad(z):
-#     """Gradient of sigmoid function
+def sigmoid_grad(z):
+    """Gradient of sigmoid function
 
-#     Args:
-#         z (np array or float): [description]
+    Args:
+        z (np array or float): [description]
 
-#     Returns:
-#         [np array]: gradient of sigmoid function of z where z == theta*layer.
-#     """
-#     sig_grad = activation_func(z,True)*(1-(activation_func(z,True))
-#     return sig_grad
+    Returns:
+        [np array]: gradient of sigmoid function of z where z == theta*layer.
+    """
+    ones = np.ones(z.shape)
+    s1 = activation_func(z, True)
+    s2 = ones - (activation_func(z, True))
+    sig_grad = s1 * s2
+    return sig_grad
 
-# def backpropagation(network):
 
-#     D = 0
+def backpropagation(
+    network, err,
+):
 
+    D = 0
