@@ -40,7 +40,7 @@ class NeuralNet:
     def train_model(self):
         """Train thetas matrices that dictate network propagation. 
         """
-        train = 1
+        train = 2
         self.generate_training_data()
         # TODO get optimisation working
 
@@ -49,7 +49,7 @@ class NeuralNet:
                 self.n_features, self.n_h_layers, self.n_nodes_hl, self.n_classes
             )
             cur_cost = self.cost_func(self.thetas)
-            for i in range(10000):
+            for i in range(1000):
                 new_thet = create_theta_dict(
                     self.n_features, self.n_h_layers, self.n_nodes_hl, self.n_classes
                 )
@@ -69,10 +69,11 @@ class NeuralNet:
             J_history = []
             alpha = 0.3
             unrolled, self.dimensions = unroll_thetas(self.thetas)
-            for i in range(100):
+            for i in range(200):
                 cost, grad = self.cost_with_grad(unrolled)
                 unrolled = unrolled - (alpha * grad)
                 J_history.append(cost)
+                print(cost)
             self.thetas = reroll_thetas(unrolled, self.dimensions)
 
         else:
@@ -93,27 +94,25 @@ class NeuralNet:
         for i, colour in enumerate(self.training_set):
             # FORWARD PROPAGATE COLOUR
             activations = forward_propagation(colour, thetas)
-            activations = {
-                i: activations[i][np.newaxis] for i in range(len(activations))
-            }
+            activations = {i: activations[i] for i in range(len(activations))}
             no_layers = len(activations)
 
-            delt[len(delt)] = (
-                activations[len(activations) - 1] - self.true_res[i][np.newaxis]
-            )
-            # print(delt)
+            delt[len(delt)] = activations[len(activations) - 1].T - self.true_res[i]
+            # print(activations[len(activations) - 2].T)
+            # print(delt[len(delt)].T)
             # print(Delta)
             Delta[len(Delta) - 1] = (
                 Delta[len(Delta) - 1]
-                + delt[len(delt)].T @ activations[len(activations) - 2]
+                + delt[len(delt)].T @ activations[len(activations) - 2].T
             )
             # GET ERRORS IN EACH LAYER
             for j in range(no_layers - 2, 0, -1):
-                delt[j] = (delt[j + 1] @ thetas[j]) * sigmoid_grad(activations[j])
+                delt[j] = (delt[j + 1] @ thetas[j]) * (sigmoid_grad(activations[j]).T)
 
+            # print(delt)
             # GET PARTIAL DERIVATES OF COST
             for k in range(no_layers - 3, -1, -1):
-                Delta[k] = Delta[k] + delt[k + 1].T @ activations[k]
+                Delta[k] = Delta[k] + delt[k + 1].T @ activations[k].T
 
         D = {i: Delta[i] / no_layers for i in Delta.keys()}
         D_unrolled, _ = unroll_thetas(D)
@@ -129,6 +128,9 @@ class NeuralNet:
         Returns:
             [np.array]: array with boolean classification
         """
+        # self.thetas = create_theta_dict(
+        #     self.n_features, self.n_h_layers, self.n_nodes_hl, self.n_classes
+        # )
         self.network = forward_propagation(features, self.thetas)
         final_layer = self.network[len(self.network) - 1]
         prediction = np.argmax(final_layer)
@@ -142,26 +144,39 @@ class NeuralNet:
         self.true_res = []
         rainbow = np.array(
             [
-                [148, 0, 211],
-                [75, 0, 130],
-                [0, 0, 255],
-                [0, 255, 0],
-                [255, 255, 0],
-                [255, 127, 0],
-                [255, 0, 0],
+                [[148], [0], [211]],
+                [[75], [0], [130]],
+                [[0], [0], [255]],
+                [[0], [255], [0]],
+                [[255], [255], [0]],
+                [[255], [127], [0]],
+                [[255], [0], [0]],
             ],
             dtype=np.float128,
         )
-        options = [0, 1, 2, 3, 4, 5, 6]
-        for i in range(0, 1000):
-            res = [0, 0, 0, 0, 0, 0, 0]
-            ind = random.choice(options)
-            res[ind] = 1
-            self.training_set.append(rainbow[ind])
-            self.true_res.append(res)
+        # options = [0, 1, 2, 3, 4, 5, 6]
+        # for i in range(0, 20):
+        #     res = [0, 0, 0, 0, 0, 0, 0]
+        #     ind = random.choice(options)
+        #     res[ind] = 1
+        #     self.training_set.append(rainbow[ind])
+        #     self.true_res.append(res)
 
-        self.training_set = np.array(self.training_set)
-        self.true_res = np.array(self.true_res)
+        # self.training_set = np.array(self.training_set)
+        self.training_set = rainbow
+        self.true_res = np.array(
+            [
+                [1, 0, 0, 0, 0, 0, 0],
+                [0, 1, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 0, 1, 0, 0],
+                [0, 0, 0, 0, 0, 1, 0],
+                [0, 0, 0, 0, 0, 0, 1],
+            ],
+            dtype=np.float128,
+        )
+        # self.true_res = np.array(self.true_res)
 
     def cost_func(self, thetas):
         """Find cost of predictions 
