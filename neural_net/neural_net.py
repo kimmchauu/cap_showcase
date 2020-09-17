@@ -67,9 +67,9 @@ class NeuralNet:
                 self.n_features, self.n_h_layers, self.n_nodes_hl, self.n_classes
             )
             J_history = []
-            alpha = 1
+            alpha = 0.3
             unrolled, self.dimensions = unroll_thetas(self.thetas)
-            for i in range(100):
+            for i in range(200):
                 cost, grad = self.cost_with_grad(unrolled)
                 unrolled = unrolled - (alpha * grad)
                 J_history.append(cost)
@@ -128,6 +128,9 @@ class NeuralNet:
         Returns:
             [np.array]: array with boolean classification
         """
+        # self.thetas = create_theta_dict(
+        #     self.n_features, self.n_h_layers, self.n_nodes_hl, self.n_classes
+        # )
         self.network = forward_propagation(features, self.thetas)
         final_layer = self.network[len(self.network) - 1]
         prediction = np.argmax(final_layer)
@@ -151,16 +154,29 @@ class NeuralNet:
             ],
             dtype=np.float128,
         )
-        options = [0, 1, 2, 3, 4, 5, 6]
-        for i in range(0, 500):
-            res = [0, 0, 0, 0, 0, 0, 0]
-            ind = random.choice(options)
-            res[ind] = 1
-            self.training_set.append(rainbow[ind])
-            self.true_res.append(res)
+        # options = [0, 1, 2, 3, 4, 5, 6]
+        # for i in range(0, 20):
+        #     res = [0, 0, 0, 0, 0, 0, 0]
+        #     ind = random.choice(options)
+        #     res[ind] = 1
+        #     self.training_set.append(rainbow[ind])
+        #     self.true_res.append(res)
 
-        self.training_set = np.array(self.training_set)
-        self.true_res = np.array(self.true_res)
+        # self.training_set = np.array(self.training_set)
+        self.training_set = rainbow
+        self.true_res = np.array(
+            [
+                [1, 0, 0, 0, 0, 0, 0],
+                [0, 1, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 0, 1, 0, 0],
+                [0, 0, 0, 0, 0, 1, 0],
+                [0, 0, 0, 0, 0, 0, 1],
+            ],
+            dtype=np.float128,
+        )
+        # self.true_res = np.array(self.true_res)
 
     def cost_func(self, thetas):
         """Find cost of predictions 
