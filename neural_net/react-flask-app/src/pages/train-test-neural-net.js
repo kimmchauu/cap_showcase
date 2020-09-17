@@ -91,8 +91,22 @@ function TestTrain() {
     const [sevenNode, setSevenNode] = useState(100)
 
     const trainNeuralNet = () => {
-        // TODO: conneect to backend
-        setModelTrainedText("Model trained!")
+        // conneect to backend
+        // Calls train api passing num of hidden layers, num of nodes
+        setModelTrainedText("Training model...")
+        var myParams = {
+            numHiddenLayers: location.state.numHiddenLayers,
+            numNodes: location.state.numNodes,
+        }
+        axios.post('http://localhost:3000/train', myParams)
+            .then(function(response){
+                console.log(response);
+                setModelTrainedText(response.data.response_message)
+
+            })
+            .catch(function(error){
+                console.log(error);
+            });   
     }
 
     // TODO add logic in for when selecting a colour, then remove console
@@ -155,18 +169,19 @@ function TestTrain() {
 
                     setPredictionClassNum(response.data.predClassNum)
                     // use JSON.parse to convert back to array of arrays
-                    var final_layer = (JSON.parse(response.data.final_layer))
-                    // access first number using [0][0], 2nd num using [1][0] etc
-                    console.log(final_layer[0][0] * 100)
-                    setPredictedConf((final_layer[response.data.predClassNum][0] * 100).toFixed(2))
+                    var final_layer = JSON.parse(response.data.final_layer)
+                    var final_l_array = final_layer.split(',');
+                    console.log(final_l_array)
+
+                    setPredictedConf((final_l_array[response.data.predClassNum] * 100).toFixed(2))
                     // set the weight of the final layer nodes too
-                    setFirstNode((final_layer[0][0] * 100).toFixed(2))
-                    setSecNode((final_layer[1][0] * 100).toFixed(2))
-                    setThirdNode((final_layer[2][0] * 100).toFixed(2))
-                    setFourthNode((final_layer[3][0] * 100).toFixed(2))
-                    setFifthNode((final_layer[4][0] * 100).toFixed(2))
-                    setSixthNode((final_layer[5][0] * 100).toFixed(2))
-                    setSevenNode((final_layer[6][0] * 100).toFixed(2))
+                    setFirstNode((final_l_array[0] * 100).toFixed(2))
+                    setSecNode((final_l_array[1] * 100).toFixed(2))
+                    setThirdNode((final_l_array[2] * 100).toFixed(2))
+                    setFourthNode((final_l_array[3] * 100).toFixed(2))
+                    setFifthNode((final_l_array[4] * 100).toFixed(2))
+                    setSixthNode((final_l_array[5] * 100).toFixed(2))
+                    setSevenNode((final_l_array[6] * 100).toFixed(2))
 
                     // if predicition is made, then show the % nums on the final layer
                     const demoQueryAll = document.querySelectorAll('.final-node-fill-text');
