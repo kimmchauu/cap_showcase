@@ -24,16 +24,18 @@ features = np.array([[100], [30], [60]]) / 255
 # print(sigmoid_grad(z))
 
 """ Features (ie, RGB values, normalised to between 0 and 1) """
-feature1 = np.array([[255], [240], [0]], dtype=np.float128) / 255
-feature2 = np.array([[0], [0], [200]], dtype=np.float128) / 255
+feature1 = np.array([[255], [255], [255]], dtype=np.float128) / 255
+feature2 = np.array([[0], [0], [0]], dtype=np.float128) / 255
 """ Initialise class """
 neural = NeuralNet()
 """ Train model (currently just creates randomly filled theta matrices)
     this won't need user interaction asides from clicking button to use method
 """
 # neural.generate_training_data()
+
 neural.train_model()
 # print(neural.thetas)
+# print(neural.get_network())
 print(neural.predict(feature1))
 print(neural.get_network())
 
