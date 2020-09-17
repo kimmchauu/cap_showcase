@@ -3,6 +3,7 @@ import random
 import math
 from scipy.optimize import fmin_bfgs
 from scipy.optimize import minimize
+from scipy.optimize import fmin
 from utils import *
 
 
@@ -36,13 +37,14 @@ class NeuralNet:
         """
         return self.network
 
-    def train_model(self, train):
+    def train_model(self):
         """Train thetas matrices that dictate network propagation. 
         """
+        train = 1
         self.generate_training_data()
         # TODO get optimisation working
 
-        if train:
+        if train == 1:
             self.thetas = create_theta_dict(
                 self.n_features, self.n_h_layers, self.n_nodes_hl, self.n_classes
             )
@@ -59,20 +61,26 @@ class NeuralNet:
                     self.thetas = new_thet
                 else:
                     continue
+
+        elif train == 2:
+            self.thetas = create_theta_dict(
+                self.n_features, self.n_h_layers, self.n_nodes_hl, self.n_classes
+            )
+            J_history = []
+            alpha = 0.3
+            unrolled, self.dimensions = unroll_thetas(self.thetas)
+            for i in range(100):
+                cost, grad = self.cost_with_grad(unrolled)
+                unrolled = unrolled - (alpha * grad)
+                J_history.append(cost)
+            self.thetas = reroll_thetas(unrolled, self.dimensions)
+
         else:
             init_thetas = create_theta_dict(
                 self.n_features, self.n_h_layers, self.n_nodes_hl, self.n_classes
             )
             unrolled_thet, self.dimensions = unroll_thetas(init_thetas)
             fmin_bfgs(self.cost_with_grad, unrolled_thet, maxiter=400)
-
-        # cost, D = self.cost_with_grad(unrolled_thet)
-        # print(f"COST:{cost}\n")
-        # print(f"D:{D}\n")
-        # res = minimize(self.cost_with_grad(unrolled_thet),)
-
-    # def decorated_cost(self, unrolled_thetas):
-    #     return self.cost_with_grad(unrolled_thet)
 
     def cost_with_grad(self, unrolled_thetas):
         thetas = reroll_thetas(unrolled_thetas, self.dimensions)
@@ -108,8 +116,9 @@ class NeuralNet:
                 Delta[k] = Delta[k] + delt[k + 1].T @ activations[k]
 
         D = {i: Delta[i] / no_layers for i in Delta.keys()}
-        D_unrolled = unroll_thetas(D)
-        return [cost, D_unrolled]
+        D_unrolled, _ = unroll_thetas(D)
+        return cost, D_unrolled
+        # return cost
 
     def predict(self, features):
         """Make prediction given a set of features.
@@ -131,17 +140,20 @@ class NeuralNet:
         """
         self.training_set = []
         self.true_res = []
-        rainbow = [
-            [148, 0, 211],
-            [75, 0, 130],
-            [0, 0, 255],
-            [0, 255, 0],
-            [255, 255, 0],
-            [255, 127, 0],
-            [255, 0, 0],
-        ]
+        rainbow = np.array(
+            [
+                [148, 0, 211],
+                [75, 0, 130],
+                [0, 0, 255],
+                [0, 255, 0],
+                [255, 255, 0],
+                [255, 127, 0],
+                [255, 0, 0],
+            ],
+            dtype=np.float128,
+        )
         options = [0, 1, 2, 3, 4, 5, 6]
-        for i in range(0, 100):
+        for i in range(0, 1000):
             res = [0, 0, 0, 0, 0, 0, 0]
             ind = random.choice(options)
             res[ind] = 1

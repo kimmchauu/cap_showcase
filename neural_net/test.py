@@ -24,7 +24,8 @@ features = np.array([[100], [30], [60]]) / 255
 # print(sigmoid_grad(z))
 
 """ Features (ie, RGB values, normalised to between 0 and 1) """
-features = np.array([[255], [240], [0]]) / 255
+feature1 = np.array([[255], [240], [0]], dtype=np.float128) / 255
+feature2 = np.array([[0], [0], [200]], dtype=np.float128) / 255
 """ Initialise class """
 neural = NeuralNet()
 """ Train model (currently just creates randomly filled theta matrices)
@@ -32,9 +33,12 @@ neural = NeuralNet()
 """
 # neural.generate_training_data()
 neural.train_model()
-print(neural.thetas)
-print(neural.predict(features))
+# print(neural.thetas)
+print(neural.predict(feature1))
+print(neural.get_network())
 
+print(neural.predict(feature2))
+print(neural.get_network())
 # print(neural.cost_func())
 """ Make prediction using the features array above """
 # pred = neural.predict(features)

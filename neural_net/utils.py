@@ -46,10 +46,10 @@ def create_theta_dict(n_features, n_layers, n_nodes_hl, n_outnodes):
     Currently sets all matrices = 0's. 
     """
     thetas = dict()
-    thetas[0] = rand(n_nodes_hl, n_features)
+    thetas[0] = rand(n_nodes_hl, n_features).astype(dtype=np.float128)
     for i in range(1, n_layers):
-        thetas[i] = rand(n_nodes_hl, n_nodes_hl)
-    thetas[n_layers] = rand(n_outnodes, n_nodes_hl)
+        thetas[i] = rand(n_nodes_hl, n_nodes_hl).astype(dtype=np.float128)
+    thetas[n_layers] = rand(n_outnodes, n_nodes_hl).astype(dtype=np.float128)
     return thetas
 
 
