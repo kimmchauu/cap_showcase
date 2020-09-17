@@ -1,5 +1,7 @@
 import numpy as np
 from numpy.random import randint
+from numpy.random import random_sample
+from numpy.random import rand
 
 
 def activation_func(x, func):
@@ -44,16 +46,16 @@ def create_theta_dict(n_features, n_layers, n_nodes_hl, n_outnodes):
     Currently sets all matrices = 0's. 
     """
     thetas = dict()
-    thetas[0] = randint(2, size=(n_nodes_hl, n_features))
+    thetas[0] = rand(n_nodes_hl, n_features)
     for i in range(1, n_layers):
-        thetas[i] = randint(2, size=(n_nodes_hl, n_nodes_hl))
-    thetas[n_layers] = randint(2, size=(n_outnodes, n_nodes_hl))
+        thetas[i] = rand(n_nodes_hl, n_nodes_hl)
+    thetas[n_layers] = rand(n_outnodes, n_nodes_hl)
     return thetas
 
 
 def forward_propagation(features, thetas):
     network = {}
-    network = {0: features}
+    network = {0: features / 255}
     # print(network)
     # print(thetas[0])
     for i in range(0, len(thetas)):
@@ -62,20 +64,6 @@ def forward_propagation(features, thetas):
         network[i + 1] = A
 
     return network
-
-
-def cost_func(predicted, known):
-    """Find the euclidean distance between predicted and known colour.
-
-    Args:
-        predicted (List): RGB values in list
-        known (List): RGB values in list
-
-    Returns:
-        [float]: distance between predicted and known 
-    """
-
-    return distance
 
 
 def sigmoid_grad(z):
@@ -94,8 +82,21 @@ def sigmoid_grad(z):
     return sig_grad
 
 
-def backpropagation(
-    network, err,
-):
+def unroll_thetas(thetas):
+    unrolled = np.array([])
+    dimensions = []
 
-    D = 0
+    for i in thetas.keys():
+        dimensions.append(thetas[i].shape)
+        unrolled = np.append(unrolled, thetas[i].flatten())
+    return unrolled, dimensions
+
+
+def reroll_thetas(unrolled, dimensions):
+    rolled = {}
+    start = 0
+    for i, mat in enumerate(dimensions):
+        elements = [unrolled[start : start + mat[0] * mat[1]]]
+        rolled[i] = np.reshape(elements, mat)
+        start = start + mat[0] * mat[1]
+    return rolled

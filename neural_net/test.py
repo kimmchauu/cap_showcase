@@ -2,10 +2,10 @@ import numpy as np
 from neural_net import *
 from utils import *
 
-# n_features = 3
-# n_layers = 2
-# n_nodes_hl = 4
-# n_outnodes = 3
+n_features = 3
+n_layers = 2
+n_nodes_hl = 4
+n_classes = 7
 
 # thetas = create_theta_dict(n_features, n_layers, n_nodes_hl, n_outnodes)
 # features = randint(2, size=(n_features, 1))
@@ -24,18 +24,52 @@ features = np.array([[100], [30], [60]]) / 255
 # print(sigmoid_grad(z))
 
 """ Features (ie, RGB values, normalised to between 0 and 1) """
-features = np.array([[100], [30], [60]]) / 255
+features = np.array([[255], [240], [0]]) / 255
 """ Initialise class """
 neural = NeuralNet()
 """ Train model (currently just creates randomly filled theta matrices)
-    this won't need user interaction asides from clicking button to use method 
+    this won't need user interaction asides from clicking button to use method
 """
+# neural.generate_training_data()
 neural.train_model()
-""" Make prediction using the features array above """
-pred = neural.predict(features)
-print(f"\nPrediction is class number: \n {pred} \n")
+print(neural.thetas)
+print(neural.predict(features))
 
-for i, layer in enumerate(neural.get_network().values()):
-    print(f"Layer {i} is : \n {layer}")
-""" Just looped through the dictionary that contains the network to demonstrate 
+# print(neural.cost_func())
+""" Make prediction using the features array above """
+# pred = neural.predict(features)
+# print(f"\nPrediction is class number: \n {pred} \n")
+
+# for i, layer in enumerate(neural.get_network().values()):
+#     print(f"Layer {i} is : \n {layer}")
+""" Just looped through the dictionary that contains the network to demonstrate
     what it looks like. Dictionary layers are labelled with integers 0 -> final layer """
+
+
+# print(create_theta_dict(n_features, n_layers, n_nodes_hl, n_classes))
+
+
+# thetas = {
+#     0: np.array(
+#         [
+#             [1.67518364, 1.33664842, 0.82150495],
+#             [1.73722026, 1.29546899, 0.83927795],
+#             [2.39114577, 1.82388514, 1.52275804],
+#             [0.77570546, 0.61528615, 0.63163221],
+#         ]
+#     ),
+#     1: np.array(
+#         [
+#             [5.93550478, 5.68483037, 5.78114132, 5.07231937],
+#             [18.52599931, 17.63146524, 18.58495269, 15.33009096],
+#             [9.60434088, 9.25933017, 9.93600228, 7.8902654],
+#             [5.11981647, 4.99873702, 5.04216709, 4.38524074],
+#         ]
+#     ),
+# }
+
+# unrolled, dimensions = unroll_thetas(thetas)
+# print(f"UNROLLED: {unrolled}\n")
+# print(f"DIMENSIONS: {dimensions}\n")
+# rolled = reroll_thetas(unrolled, dimensions)
+# print(f"ROLLED: {rolled}")
