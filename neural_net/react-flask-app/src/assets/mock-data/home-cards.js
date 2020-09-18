@@ -13,7 +13,7 @@ export default [
     {
         title: 'Jackie Moran',
         description: 'Physics Queen',
-        tags: ['I&D', 'Cool Beans'],
+        tags: ['I&D', 'Tree Hugger'],
         // link this to About us to find out more
         link: '/about-us',
         image: 'cool.jpg',
